@@ -16,7 +16,7 @@ export class AppComponent {
   pkceAuthConfig: AuthConfig = {
     loginUrl: 'http://127.0.0.1:9000/oauth2/authorization',
     clientId: 'public-client',
-    redirectUri: 'http://192.168.160.1:3000/',
+    redirectUri: 'http://192.168.1.63:3000/',
     responseType: 'code',
     scope: 'openid profile email',
     postLogoutRedirectUri: 'http://127.0.0.1:9000/login',
@@ -27,7 +27,7 @@ export class AppComponent {
 
   constructor(private oauthService: OAuthService) {
     this.oauthService.configure(this.pkceAuthConfig);
-    this.oauthService.loadDiscoveryDocumentAndTryLogin();
+    // this.oauthService.loadDiscoveryDocumentAndTryLogin().then(r => console.log(r));
   }
 
   login(): void {
