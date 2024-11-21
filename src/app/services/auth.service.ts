@@ -29,7 +29,10 @@ export class AuthService {
     // this.oauthService.initLoginFlowInPopup(); // 启动弹出式登录流程
   }
   logout(): void {
+    this.oauthService.restartSessionChecksIfStillLoggedIn();
     this.oauthService.logOut(); // 登出
+    this.router.navigate(['/']);
+
   }
   get isAuthenticated(): boolean {
     return this.oauthService.hasValidAccessToken(); // 检查访问令牌是否有效
@@ -48,8 +51,9 @@ export class AuthService {
     });
   }
 
-  accessToken(): any {
-    return this.oauthService.getAccessToken(); // 获取访问令牌
+  accessToken(): string {
+    // 获取访问令牌
+    return `Bearer ${this.oauthService.getAccessToken()}`;
   }
 
   tryLogin(isPop = false): void {

@@ -13,7 +13,7 @@ import {ApiService} from "../../services/api.service";
 export class HomeComponent implements OnInit {
   text: any = null;
   token: any = null;
-  a:any = null;
+  message:any = null;
 
   constructor(private authservice: AuthService, private apiservice: ApiService) {}
   ngOnInit(): void {
@@ -26,8 +26,12 @@ export class HomeComponent implements OnInit {
   }
 
   hello() {
-    this.apiservice.hello().subscribe(s=>{
-      this.a = s;
+    this.apiservice.message().subscribe(s=>{
+      this.message = s;
     });
+  }
+
+  logout() {
+    this.authservice.logout();
   }
 }
