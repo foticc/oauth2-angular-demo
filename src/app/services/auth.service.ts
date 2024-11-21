@@ -18,6 +18,7 @@ export class AuthService {
     userinfoEndpoint: 'http://127.0.0.1:9000/userinfo',
     requireHttps: false,
     showDebugInformation: true,
+    logoutUrl:"http://127.0.0.1:9000/connect/logout",
   };
   constructor(private oauthService: OAuthService, private router: Router) {
     this.oauthService.configure(this.pkceAuthConfig);
