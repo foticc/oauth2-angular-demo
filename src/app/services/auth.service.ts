@@ -14,7 +14,7 @@ export class AuthService {
     responseType: 'code',
     scope: 'openid profile email',
     tokenEndpoint: 'http://127.0.0.1:9000/oauth2/token',
-    postLogoutRedirectUri: 'http://127.0.0.1:9000/login',
+    postLogoutRedirectUri: 'http://127.0.0.1:3000/',
     userinfoEndpoint: 'http://127.0.0.1:9000/userinfo',
     requireHttps: false,
     showDebugInformation: true,
@@ -22,7 +22,8 @@ export class AuthService {
   };
   constructor(private oauthService: OAuthService, private router: Router) {
     this.oauthService.configure(this.pkceAuthConfig);
-    // this.oauthService.loadDiscoveryDocumentAndTryLogin();
+    // this.oauthService.setStorage()
+    // this.oauthService.loadDiscoveryDocumentAndTryLogin().then(r => console.log(r));
   }
 
   login(): void {
@@ -30,10 +31,13 @@ export class AuthService {
     // this.oauthService.initLoginFlowInPopup(); // 启动弹出式登录流程
   }
   logout(): void {
-    this.oauthService.restartSessionChecksIfStillLoggedIn();
+    // this.oauthService.revokeTokenAndLogout()
+    // this.oauthService.revokeTokenAndLogout()
+    //   .then(res=>{
+    //     console.log(res);
+    //     this.router.navigate(['/']);
+    //   });
     this.oauthService.logOut(); // 登出
-    this.router.navigate(['/']);
-
   }
   get isAuthenticated(): boolean {
     return this.oauthService.hasValidAccessToken(); // 检查访问令牌是否有效
@@ -44,6 +48,16 @@ export class AuthService {
       console.log(' ', res);
     });
     return this.oauthService.getGrantedScopes(); // 获取用户信息 claims
+  }
+
+  test():any {
+    console.log(this.oauthService.postLogoutRedirectUri);
+    // @ts-ignore
+    console.log(this.oauthService.logoutUrl.indexOf('{{') > -1);
+    const postLogoutUrl = this.oauthService.postLogoutRedirectUri ||
+      (this.oauthService.redirectUriAsPostLogoutRedirectUriFallback && this.oauthService.redirectUri) ||
+      '';
+    console.log(postLogoutUrl);
   }
 
   refreshToken() {

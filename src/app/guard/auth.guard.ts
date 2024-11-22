@@ -10,6 +10,7 @@ export class AuthGuard implements CanActivate {
 
   canActivate(): boolean {
     if (this.authService.isAuthenticated) {
+      console.log("允许访问");
       // 检查用户是否登录
       return true; // 允许访问
     } else {

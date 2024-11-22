@@ -34,4 +34,8 @@ export class HomeComponent implements OnInit {
   logout() {
     this.authservice.logout();
   }
+
+  test() {
+    this.authservice.test();
+  }
 }
