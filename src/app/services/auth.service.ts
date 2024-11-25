@@ -22,7 +22,7 @@ export class AuthService {
   };
   constructor(private oauthService: OAuthService, private router: Router) {
     this.oauthService.configure(this.pkceAuthConfig);
-    // this.oauthService.setStorage()
+    this.oauthService.setStorage(localStorage)
     // this.oauthService.loadDiscoveryDocumentAndTryLogin().then(r => console.log(r));
   }
 
