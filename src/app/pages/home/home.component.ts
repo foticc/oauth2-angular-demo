@@ -19,6 +19,7 @@ export class HomeComponent implements OnInit {
   ngOnInit(): void {
     this.text = this.authservice.userInfo();
     this.token = this.authservice.accessToken();
+    this.hello();
   }
 
   refreshToken() {
