@@ -10,7 +10,7 @@ export class AuthService {
     issuer: 'http://127.0.0.1:9000',
     loginUrl: 'http://127.0.0.1:9000/oauth2/authorize',
     clientId: 'public-client',
-    redirectUri: 'http://127.0.0.1:3000/callback',
+    redirectUri: 'http://127.0.0.1:3000/',
     responseType: 'code',
     scope: 'openid profile email',
     tokenEndpoint: 'http://127.0.0.1:9000/oauth2/token',
@@ -24,11 +24,15 @@ export class AuthService {
     this.oauthService.configure(this.pkceAuthConfig);
     this.oauthService.setStorage(localStorage)
     // this.oauthService.loadDiscoveryDocumentAndTryLogin().then(r => console.log(r));
+    this.oauthService.events.subscribe(res=>{
+      console.log(res);
+    })
   }
 
   login(): void {
-    this.oauthService.initCodeFlow(); // 启动授权码登录流程
+    // this.oauthService.initCodeFlow(); // 启动授权码登录流程
     // this.oauthService.initLoginFlowInPopup(); // 启动弹出式登录流程
+    this.oauthService.initLoginFlow();
   }
   logout(): void {
     // this.oauthService.revokeTokenAndLogout()
