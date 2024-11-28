@@ -9,13 +9,13 @@ export class AuthGuard implements CanActivate {
   constructor(private authService: AuthService, private router: Router) {}
 
   canActivate(): boolean {
-    if (this.authService.isAuthenticated) {
-      console.log("允许访问");
-      // 检查用户是否登录
-      return true; // 允许访问
+    if (
+      this.authService.isAuthenticated
+    ) {
+      return true;
     } else {
-      this.router.navigate(['/login']); // 重定向到登录页面
-      return false; // 阻止访问
+      this.router.navigate(['login']);
+      return false;
     }
   }
 }
