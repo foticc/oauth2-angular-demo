@@ -1,16 +1,16 @@
 import { AuthConfig } from 'angular-oauth2-oidc';
 
 export const PKCE_AUTH_CONFIG: AuthConfig = {
-  issuer: 'http://127.0.0.1:9000',
-  loginUrl: 'http://127.0.0.1:9000/oauth2/authorize',
+  issuer: 'http://spring-oauth-server:8000',
+  loginUrl: 'http://spring-oauth-server:8000/oauth2/authorize',
   clientId: 'public-client',
-  redirectUri: 'http://127.0.0.1:3000/callback',
+  redirectUri: 'http://spring-oauth-client:3000/callback',
   responseType: 'code',
   scope: 'openid profile email',
-  tokenEndpoint: 'http://127.0.0.1:9000/oauth2/token',
-  postLogoutRedirectUri: 'http://127.0.0.1:3000/',
-  userinfoEndpoint: 'http://127.0.0.1:9000/userinfo',
+  tokenEndpoint: 'http://spring-oauth-server:8000/oauth2/token',
+  postLogoutRedirectUri: 'http://spring-oauth-client:3000/',
+  userinfoEndpoint: 'http://spring-oauth-server:8000/userinfo',
   requireHttps: false,
   showDebugInformation: true,
-  logoutUrl:"http://127.0.0.1:9000/connect/logout"
+  logoutUrl:"http://spring-oauth-server:8000/connect/logout"
 };
