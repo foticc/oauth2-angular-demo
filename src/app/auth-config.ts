@@ -7,6 +7,7 @@ export const PKCE_AUTH_CONFIG: AuthConfig = {
   redirectUri: 'http://spring-oauth-client:3000/callback',
   responseType: 'code',
   scope: 'openid profile email',
+  oidc:true,
   tokenEndpoint: 'http://spring-oauth-server:8000/oauth2/token',
   postLogoutRedirectUri: 'http://spring-oauth-client:3000/',
   userinfoEndpoint: 'http://spring-oauth-server:8000/userinfo',

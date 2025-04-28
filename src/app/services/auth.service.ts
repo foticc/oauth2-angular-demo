@@ -3,6 +3,7 @@ import {Router} from '@angular/router';
 import {OAuthErrorEvent, OAuthService} from 'angular-oauth2-oidc';
 import {PKCE_AUTH_CONFIG} from "../auth-config";
 import {BehaviorSubject, filter, from, mergeMap, Observable, of, tap} from "rxjs";
+import {log} from "@angular-devkit/build-angular/src/builders/ssr-dev-server";
 
 @Injectable({
   providedIn: 'root',
@@ -35,7 +36,7 @@ export class AuthService {
   }
 
   login() {
-    this.oauthService.initCodeFlow();
+    this.oauthService.initLoginFlow();
   }
 
   logout(): void {
